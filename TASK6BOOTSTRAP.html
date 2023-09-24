@@ -1,0 +1,94 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link href="//maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" rel="stylesheet" id="bootstrap-css">
+    <script src="//maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js"></script>
+    <script src="//cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+    <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.0.8/css/all.css">
+    <style>
+        
+        .box {
+            border: 1px solid #ccc;
+            padding: 20px;
+            border-radius: 5px;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.2);
+        }
+    </style>
+    <title>Your Form Title</title>
+</head>
+<body>
+    <div class="container-fluid">
+        <div class="row justify-content-center align-items-center vh-100">
+            <div class="col-md-4 box">
+                <form
+                  #userForm="ngForm"
+                  (ngSubmit)="userForm.form.valid && onSubmit(userForm)"
+                >
+                    <div class="mb-3">
+                        <label class="form-label">Name</label>
+                        <input
+                            type="text"
+                            name="name"
+                            class="form-control"
+                            [(ngModel)]="model.name"
+                            #name="ngModel"
+                            [ngClass]="{ 'is-invalid': userForm.submitted && name.invalid }"
+                            required
+                        />
+                        <div class="invalid-feedback" *ngIf="userForm.submitted && name.invalid">
+                            Name is required
+                        </div>
+                    </div>
+                    <div class="mb-3">
+                        <label class="form-label">Email</label>
+                        <input
+                            type="email"
+                            class="form-control"
+                            name="email"
+                            [(ngModel)]="model.email"
+                            #email="ngModel"
+                            [ngClass]="{ 'is-invalid': userForm.submitted && email.invalid }"
+                            email
+                            required
+                        />
+                        <div *ngIf="userForm.submitted && email.invalid" class="invalid-feedback">
+                            Email is required
+                        </div>
+                    </div>
+                    <div class="mb-3">
+                        <label class="form-label">Password</label>
+                        <input
+                            type="password"
+                            class="form-control"
+                            name="password"
+                            [(ngModel)]="model.password"
+                            #password="ngModel"
+                            [ngClass]="{ 'is-invalid': userForm.submitted && password.invalid }"
+                            minlength="8"
+                            required
+                        />
+                        <div *ngIf="userForm.submitted && password.invalid" class="invalid-feedback">
+                            Password is required
+                        </div>
+                    </div>
+                    <div class="mb-3">
+                        <label class="form-label">Hobbies</label>
+                        <select class="form-select" name="hobbies" [(ngModel)]="model.hobbies">
+                            <option value="">Select an option</option>
+                            <option *ngFor="let hoby of Hobbies" [value]="hoby">
+                                {{ hoby }}
+                            </option>
+                        </select>
+                    </div>
+                    <!-- Other form fields here -->
+                    <div class="mb-3">
+                        <button class="btn btn-danger btn-block">Submit</button>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
+</body>
+</html>
