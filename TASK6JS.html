@@ -4,119 +4,24 @@
 <head>
   <title>Instagram Login</title>
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.2.1/css/all.css">
-  
+
   <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
   <style>
-    body {
-      font-family: Arial, sans-serif;
-      background-color: #fafafa;
-      display: flex;
-      justify-content: center;
-      align-items: center;
-      height: 100vh;
-      margin: 0;
-    }
-
-    .container {
-      background-color: white;
-      border: 1px solid #ccc;
-      border-radius: 5px;
-      box-shadow: 0 0 10px rgba(0, 0, 0, 0.2);
-      width: 350px;
-      padding: 20px;
-      text-align: center;
-    }
-
-    .container h1 {
-      font-size: 28px;
-      margin-bottom: 20px;
-    }
-
-    .input-field {
-      display: flex;
-      align-items: center;
-      margin-bottom: 15px;
-      border: 1px solid #dbdbdb;
-      border-radius: 3px;
-    }
-
-    .icon {
-      background: #d5d3d3;
-      color: #262626;
-      min-width: 40px;
-      text-align: center;
-      padding: 10px;
-    }
-
-    .inputs {
-      border: none;
-      flex-grow: 1;
-      padding: 10px;
-      font-size: 14px;
-    }
-
-    .button {
-      margin-top: 20px;
-    }
-
-    .submit {
-      color: white;
-      background: #1877f2;
-      padding: 9px 25px;
-      border: none;
-      border-radius: 5px;
-      box-shadow: 0 0 5px #c9c9c9;
-      cursor: pointer;
-      font-size: 16px;
-     
-      width: 100%;
-    }
-
-    .submit:hover {
-      background: #166fe5;
-    }
-
-    .remember-me {
-      display: flex;
-      align-items: center;
-      justify-content: space-between;
-      margin-top: 10px;
-    }
-
-    .remember-me label {
-      margin: 0;
-      font-size: 12px;
-    }
-
-    .remember-me .forgot-password a {
-      color: #1877f2;
-      text-decoration: none;
-      font-size: 12px;
-    }
-
-    .signup-link {
-      margin-top: 15px;
-    }
-
-    .signup-link a {
-      color: #1877f2;
-      text-decoration: none;
-      font-weight: 600;
-    }
+    
   </style>
 </head>
 
 <body>
   <div class="container">
     <h1>Instagram</h1>
-    <form>
+    <form id="loginForm" onsubmit="return validateForm()">
       <div class="input-field">
         <i class="fa fa-user icon"></i>
-        <input type="text" class="form-control inputs" name="usrname" placeholder="Username">
+        <input type="text" class="form-control inputs" name="usrname" id="username" placeholder="Username">
       </div>
       <div class="input-field">
         <i class="fa fa-eye-slash icon"></i>
-        <input type="password" class="form-control inputs" placeholder="Password">
+        <input type="password" class="form-control inputs" id="password" placeholder="Password">
       </div>
       <div class="button">
         <button type="submit" class="btn btn-primary submit">Log In</button>
@@ -134,8 +39,26 @@
       <p>Don't have an account? <a href="#">Sign up here.</a></p>
     </div>
   </div>
-  
-  
+
+  <script>
+    function validateForm() {
+      var username = document.getElementById("username").value;
+      var password = document.getElementById("password").value;
+
+      if (username.trim() === "") {
+        alert("Username cannot be empty");
+        return false;
+      }
+
+      if (password.trim() === "") {
+        alert("Password cannot be empty");
+        return false;
+      }
+
+      return true;
+    }
+  </script>
+
   <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
   <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.16.0/umd/popper.min.js"></script>
   <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
